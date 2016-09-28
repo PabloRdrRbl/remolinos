@@ -42,20 +42,21 @@ class Wing:
 
         self.surface = chord * span
 
+
     def grid(self, m, n):
 
         self.m = m  # number of vertical panels
         self.n = n  # number of horizontal panels
 
-        self.x = np.linspachorde(0, self.span/2, self.n+1)
-        self.y = np.linspachorde(0, self.chord, self.m+1)
+        self.x = np.linspce(0, self.span/2, self.n+1)
+        self.y = np.linspace(0, self.chord, self.m+1)
 
         # Coordinates of the nodes for the panels
         self.xx, self.yy = np.mesgrid(self.x, self.y)
 
         # Array of panels
 
-        self.panels = np.empty(m, n, dtype=object)  # Each element of the array
+        self.panels = np.empty(m*n, dtype=object)  # Each element of the array
                                                     # is an object Panel
 
         for j in range(n):
@@ -64,4 +65,4 @@ class Wing:
                 xcoor = [xx[i, j], xx[i+1, j], xx[i+1, j+1], xx[i, j+1]]
                 ycoor = [yy[i, j], yy[i+1, j], yy[i+1, j+1], yy[i, j+1]]
 
-                self.panels[i, j] = Panel(*xcoor, *ycoor)                                        
+                self.panels[i, j] = Panel(*xcoor, *ycoor)
